@@ -215,8 +215,8 @@ extension YTCombinationAnimationViewController {
         let layer = CAShapeLayer()
         layer.path = path.cgPath
         layer.lineWidth = 2
-        layer.strokeColor = UIColor.red.cgColor
-        layer.fillColor = UIColor.clear.cgColor
+        layer.strokeColor = UIColor.green.cgColor
+        layer.fillColor = UIColor.red.cgColor
         layer.strokeStart = 0
         layer.strokeEnd = 1
         view.layer.addSublayer(layer)
@@ -229,6 +229,16 @@ extension YTCombinationAnimationViewController {
         animation.isRemovedOnCompletion = false
         
         layer.add(animation, forKey: "strokeEndAnimation")
+        
+      //增加跳动的心脏
+        
+        let scale = CAKeyframeAnimation.init(keyPath: "transform.scale")
+        scale.values = [1.2,1.4]
+        scale.duration = 1
+        scale.keyTimes = [0.6,1]
+        scale.beginTime = CACurrentMediaTime() + 2
+        scale.repeatCount = 100
+        layer.add(scale, forKey: "scale")
     }
     
 }
